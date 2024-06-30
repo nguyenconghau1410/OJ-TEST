@@ -121,15 +121,6 @@ public class Utils {
             delayMillis = (long) (timeLimit * 1000);
         }
         File inputFile = new File(Constant.handlePath(test.get("input")));
-        if(inputFile.exists()) {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile));
-            String line;
-            StringBuilder stringBuilder = new StringBuilder();
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-            System.out.println(stringBuilder.toString());
-        }
         builder.redirectInput(inputFile);
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         Callable<Execute> task = () -> {
