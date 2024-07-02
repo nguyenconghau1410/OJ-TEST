@@ -44,3 +44,15 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_USER_NAME }}/online-judge-v:latest
 
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull ${{ secrets.DOCKER_USER_NAME }}/online-judge-v:latest
+            docker stop OJS || true
+            docker rm OJS || true
+            docker run -dp 8080:8080 --name OJS ${{ secrets.DOCKER_USER_NAME }}/online-judge-v:latest
+

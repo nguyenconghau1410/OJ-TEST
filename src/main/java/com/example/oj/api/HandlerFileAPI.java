@@ -137,7 +137,7 @@ public class HandlerFileAPI {
 
     @GetMapping("/test")
     public ResponseEntity<Map<String, Object>> test() throws IOException {
-        File file = new File("./testcase/cses-repetitions/input/1.in");
+        File file = new File("./testcase/check-prime-numbers/input/1.in");
         if(file.exists()) {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             String line;
